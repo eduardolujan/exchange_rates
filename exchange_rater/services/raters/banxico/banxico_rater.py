@@ -2,8 +2,8 @@
 from typing import Optional
 
 from .banxico_api_client import BanxicoApiClient
-from app.services.raters import ExchangeRater
-from app.services.shared.utils.parse_utils import parse_to_datetime, parse_to_float
+from exchange_rater.services.raters import ExchangeRater
+from exchange_rater.services.shared.utils.parse_utils import parse_to_datetime, parse_to_float
 
 
 class BanxicoRater(ExchangeRater):

@@ -4,7 +4,7 @@
 import re
 
 from .beautiful_soap_creator import BeautifulSoapCreator
-from app.services.shared.utils.parse_utils import parse_to_float, parse_to_datetime
+from exchange_rater.services.shared.utils.parse_utils import parse_to_float, parse_to_datetime
 
 
 class BeautifulSoapScrapper:

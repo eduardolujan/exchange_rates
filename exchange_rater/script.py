@@ -1,13 +1,32 @@
 # -*- coding: utf-8 -*-
 
+from environs import Env
 
-from app.services.raters.official_journal import (HtmlUrllibGetterClient,
-                                                  BeautifulSoapCreator,
-                                                  BeautifulSoapScrapper,
-                                                  OfficialJournalRater, )
-from app.services.raters.fixer_io import FixerApiClient, FixerExchangeRater
-from app.services.raters.banxico import BanxicoApiClient, BanxicoRater
+from exchange_rater.services.raters.official_journal import (
+    HtmlUrllibGetterClient,
+    BeautifulSoapCreator,
+    BeautifulSoapScrapper,
+    OfficialJournalRater,
+)
+from exchange_rater.services.raters.fixer_io import (
+    FixerApiClient,
+    FixerExchangeRater,
+)
+from exchange_rater.services.raters.banxico import (
+    BanxicoApiClient,
+    BanxicoRater
+)
 
+import os
+from pathlib import Path
+from environs import Env
+
+CURRENT_PATH = os.path.dirname(os.path.abspath(__file__))
+PROJECT_PATH = Path(CURRENT_PATH).parent
+env = Env()
+ENV_PATH = os.path.join(PROJECT_PATH, '.env')
+if os.path.exists(ENV_PATH):
+    env.read_env(ENV_PATH)
 
 def main():
     """
@@ -15,16 +34,17 @@ def main():
     :return:
     :rtype:
     """
-    ojf_api_url = "https://www.banxico.org.mx/tipcamb/tipCamMIAction.do"
-    html_urllib_getter_client = HtmlUrllibGetterClient(url=ojf_api_url)
+    env = Env()
+    official_journal_api_url = env.str("OFFICIAL_JOURNAL_API_URL")
+    html_urllib_getter_client = HtmlUrllibGetterClient(url=official_journal_api_url)
     bs_creator = BeautifulSoapCreator(client=html_urllib_getter_client)
     bs_scrapper = BeautifulSoapScrapper(bs_creator=bs_creator)
     official_journal_rater = OfficialJournalRater(bs_scrapper=bs_scrapper)
     rate = official_journal_rater.get_rate()
     print("Diario oficial", rate)
 
-    fixer_io_api_key = "2403f378fea79fbef57aa5c43fb3692c"
-    fixer_io_url = "http://data.fixer.io/api"
+    fixer_io_api_key = env.str("FIXER_IO_API_KEY")
+    fixer_io_url = env.str("FIXER_IO_URL")
     fixer_io_api_client = FixerApiClient(url=fixer_io_url, api_key=fixer_io_api_key)
     fixer_io_exchange_rater = FixerExchangeRater(api_client=fixer_io_api_client)
     rate = fixer_io_exchange_rater.get_rate()

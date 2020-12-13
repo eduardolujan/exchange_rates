@@ -5,8 +5,8 @@ from typing import Optional
 from datetime import datetime
 
 from .fixer_api_client import FixerApiClient
-from app.services.raters import ExchangeRater
-from app.services.shared.utils.math_utils import truncate
+from exchange_rater.services.raters import ExchangeRater
+from exchange_rater.services.shared.utils.math_utils import truncate
 
 
 class FixerExchangeRater(ExchangeRater):

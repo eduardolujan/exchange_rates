@@ -4,7 +4,7 @@
 from typing import Optional
 
 from .beautiful_soap_scrapper import BeautifulSoapScrapper
-from app.services.raters import ExchangeRater
+from exchange_rater.services.raters import ExchangeRater
 
 
 class OfficialJournalRater(ExchangeRater):

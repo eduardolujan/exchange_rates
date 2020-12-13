@@ -5,7 +5,7 @@ import json
 from datetime import datetime
 
 import requests
-from app.services.shared.utils.enviroment_files import get_env
+from exchange_rater.services.shared.utils.enviroment_files import get_env
 
 
 env = get_env()
