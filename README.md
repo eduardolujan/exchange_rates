@@ -19,30 +19,6 @@ $ pytest . -vv
 Example env file 
 
 ```
-# PostgreSQL
-# ------------------------------------------------------------------------------
-POSTGRES_HOST=exchange_rater_postgres
-POSTGRES_PORT=5432
-POSTGRES_DB=exchange_rater
-POSTGRES_USER=postgres
-POSTGRES_PASSWORD=password
-POSTGRES_DATA=~/Documents/Projects/docker/exchange_rater/postgres
-POSTGRES_BACKUPS=~/Documents/projects/docker/exchange_rater/postgres_backups
-POSTGRES_EXTERNAL_PORT=5432
-POSTGRES_HOST_LOCAL=127.0.0.1
-
-
-# Services
-# ------------------------------------------------------------------------------
-
-# Official Journal
-OFFICIAL_JOURNAL_API_URL=https://www.banxico.org.mx/tipcamb/tipCamMIAction.do
-
-# Fixer
-FIXER_IO_API_KEY=2403f378fea79fbef57aa5c43fb3692c
-FIXER_IO_URL=http://data.fixer.io/api
-
-# Banxico
-BANXICO_API_TOKEN=81278a411674b6a9c2e134b18a4b96cf7d8d9792716cd5d01a8409a3a19a57a0
-BANXICO_API_URL=https://www.banxico.org.mx/SieAPIRest/service/v1/series/SF43718/datos
+$ cd $PROJECT_ROOT
+$ mv example.env .env
 ```

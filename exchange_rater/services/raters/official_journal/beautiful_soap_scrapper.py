@@ -24,9 +24,15 @@ class BeautifulSoapScrapper:
         :rtype:
         """
         bs_soap = self.__bs_creator.create()
-        rows = bs_soap.find_all('tr', attrs={'class': re.compile(r"^renglonNon|renglonPar$")})
-        exchanges_data = dict()
+        if not bs_soap:
+            raise Exception(f"No Beautiful soap created")
 
+        rows = bs_soap.find_all('tr', attrs={'class': re.compile(r"^renglonNon|renglonPar$")})
+
+        if not rows:
+            raise Exception(f"Not tr items found renglonNon or renglonPar")
+
+        exchanges_data = dict()
         for row in rows:
             tds = row.find_all('td')
             if len(tds) != 4:

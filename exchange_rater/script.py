@@ -3,7 +3,7 @@
 from environs import Env
 
 from exchange_rater.services.raters.official_journal import (
-    HtmlUrllibGetterClient,
+    HtmlClient,
     BeautifulSoapCreator,
     BeautifulSoapScrapper,
     OfficialJournalRater,
@@ -36,7 +36,7 @@ def main():
     """
     env = Env()
     official_journal_api_url = env.str("OFFICIAL_JOURNAL_API_URL")
-    html_urllib_getter_client = HtmlUrllibGetterClient(url=official_journal_api_url)
+    html_urllib_getter_client = HtmlClient(url=official_journal_api_url)
     bs_creator = BeautifulSoapCreator(client=html_urllib_getter_client)
     bs_scrapper = BeautifulSoapScrapper(bs_creator=bs_creator)
     official_journal_rater = OfficialJournalRater(bs_scrapper=bs_scrapper)
