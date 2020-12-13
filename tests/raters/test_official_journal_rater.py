@@ -13,6 +13,13 @@ from exchange_rater.services.raters.official_journal import (
 )
 
 
+def test_offial_journal(get_env):
+    env = get_env()
+    non_string_url = None
+    with pytest.raises(Exception, match="Parameter url is not string,"):
+        HtmlClient(url=non_string_url)
+
+
 def test_official_journal_rate_keys(get_env) -> NoReturn:
     """
     Official journal get rate keys

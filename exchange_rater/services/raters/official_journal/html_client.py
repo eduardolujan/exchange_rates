@@ -11,8 +11,7 @@ class HtmlClient:
 
     def __init__(self, url: str = None, request_get=None):
         if type(url) is not str:
-            raise ValueError(f"Parameter url is not string, {url}")
-
+            raise Exception(f"Parameter url is not string, {url}")
         self.__url = url
         self.__request_get = request_get or requests.get
 
