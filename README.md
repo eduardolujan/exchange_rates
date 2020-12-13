@@ -1,4 +1,4 @@
-# Exchange rages project
+# Exchange rates project
 
 Exchange rates
 
