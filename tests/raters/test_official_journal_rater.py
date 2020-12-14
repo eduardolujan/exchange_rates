@@ -1,8 +1,10 @@
 # -*- coding: utf-8 -*-
 
 from typing import NoReturn
+from unittest.mock import Mock, MagicMock, patch
 
 import pytest
+
 
 from tests.doubles.fake.official_journal import HtmlClientFaker
 from exchange_rater.services.raters.official_journal import (
@@ -11,13 +13,6 @@ from exchange_rater.services.raters.official_journal import (
     BeautifulSoapScrapper,
     OfficialJournalRater,
 )
-
-
-def test_offial_journal(get_env):
-    env = get_env()
-    non_string_url = None
-    with pytest.raises(Exception, match="Parameter url is not string,"):
-        HtmlClient(url=non_string_url)
 
 
 def test_official_journal_rate_keys(get_env) -> NoReturn:

@@ -6,7 +6,17 @@ from pathlib import Path
 
 import pytest
 from environs import Env
+from requests import Response
 
+
+@pytest.fixture
+def get_respose():
+    def wrapp(content, http_status):
+        response = Response()
+        response._content = content
+        response.status_code = http_status
+        yield response
+    return wrapp
 
 
 @pytest.fixture
@@ -31,3 +41,4 @@ def get_env() -> Env:
         env.read_env(env_path)
         return env
     return wrapper
+
