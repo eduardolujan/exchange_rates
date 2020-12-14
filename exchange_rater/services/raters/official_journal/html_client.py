@@ -15,16 +15,15 @@ class HtmlClient:
         self.__url = url
         self.__request_get = request_get or requests.get
 
-    def get_html(self):
+    def get_html(self) -> str:
         """
         Get html
         :return: html
         :rtype: BufferedReader
         """
-
         respose = self.__request_get(self.__url)
         response_content = respose.content.decode('utf-8')
         if respose.status_code not in [200]:
-            raise Exception(f"The url {self.__url} response without code 200, "
+            raise Exception(f"The url response without code 200, "
                             f"{respose.http_status}, {response_content}")
         return response_content
