@@ -29,7 +29,7 @@ class BanxicoRater(ExchangeRater):
                                                      value=parse_to_float(item.get('dato'))) for item in data_rates}
         ordered_items = sorted(formatted_values.items(), key=lambda item: item[0], reverse=True)
         if not ordered_items:
-            raise Exception(f"Empty values in baxico results")
+            raise Exception(f"Empty values in banxico results")
         _, today_rate = ordered_items[0]
 
         return today_rate

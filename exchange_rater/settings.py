@@ -10,6 +10,7 @@ import os
 from pathlib import Path
 from environs import Env
 
+
 CURRENT_PATH = os.path.dirname(os.path.abspath(__file__))
 PROJECT_PATH = Path(CURRENT_PATH).parent
 env = Env()
@@ -20,7 +21,8 @@ if os.path.exists(ENV_PATH):
 
 ENV = env.str("FLASK_ENV", default="production")
 DEBUG = ENV == "development"
-POSTGRES_HOST = env.str('POSTGRES_HOST')
+POSTGRES_HOST = env.str('POSTGRES_HOST') if env.str("ENVIRONMENT") == "production"\
+    else env.str("POSTGRES_HOST_LOCAL")
 POSTGRES_PORT = env.str('POSTGRES_PORT')
 POSTGRES_DB = env.str('POSTGRES_DB')
 POSTGRES_USER = env.str('POSTGRES_USER')

@@ -50,8 +50,5 @@ class BanxicoApiClient:
         response_json = json.loads(response_content)
         series = response_json.get('bmx', {}).get('series', [])
 
-        if not series:
-            raise Exception(f"Series empty in json response, {response_content}")
-
         serie_sf43718 = series[0]
         return serie_sf43718.get('datos', [])
